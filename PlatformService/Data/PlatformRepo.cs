@@ -15,7 +15,8 @@ namespace PlatformService.Data
         {
             if (platform != null)
             {
-
+                _context.Platforms.Add(platform);
+                SaveChanges();
             }
             else
             {
