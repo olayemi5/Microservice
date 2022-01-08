@@ -48,10 +48,14 @@ namespace PlatformService.Controllers
         [HttpPost]
         public ActionResult<PlatformReadDto> CreatePlatform(PlatformCreateDto platformCreateDto)
         {
+            if (platformCreateDto == null) return BadRequest();
+
             var mappedObj = mapper.Map<Platform>(platformCreateDto);
+            platformRepo.CreatePlatform(mappedObj);
 
+            var platformReadDto = mapper.Map<PlatformReadDto>(mappedObj);
 
-            return Ok();
+            return CreatedAtRoute(nameof(GetPlatformById), new { Id = platformReadDto.Id }, platformReadDto);
         }
     }
 }
