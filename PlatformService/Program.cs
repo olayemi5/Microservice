@@ -1,5 +1,4 @@
 using PlatformService.Data;
-using Microsoft.EntityFrameworkCore.InMemory;
 using PlatformService.SyncDataService.Http;
 
 var builder = WebApplication.CreateBuilder(args);

@@ -52,7 +52,7 @@ namespace PlatformService.Controllers
         }
 
         [HttpPost]
-        public ActionResult<PlatformReadDto> CreatePlatform(PlatformCreateDto platformCreateDto)
+        public async Task<ActionResult<PlatformReadDto>> CreatePlatform(PlatformCreateDto platformCreateDto)
         {
             if (platformCreateDto == null) return BadRequest();
 
@@ -60,6 +60,15 @@ namespace PlatformService.Controllers
             platformRepo.CreatePlatform(mappedObj);
 
             var platformReadDto = mapper.Map<PlatformReadDto>(mappedObj);
+
+            try
+            {
+                await commandDataClient.SendPlatformToCommand(platformReadDto);
+            }
+            catch (Exception ex)
+            {
+                System.Console.WriteLine($"Could not send synchronously - {ex.Message}");
+            }
 
             return CreatedAtRoute(nameof(GetPlatformById), new { Id = platformReadDto.Id }, platformReadDto);
         }
