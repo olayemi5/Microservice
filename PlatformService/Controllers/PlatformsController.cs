@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using PlatformService.Data;
 using PlatformService.Dtos;
 using PlatformService.Model;
+using PlatformService.SyncDataService.Http;
 
 namespace PlatformService.Controllers
 {
@@ -12,11 +13,16 @@ namespace PlatformService.Controllers
     {
         private readonly IPlatformRepo platformRepo;
         private readonly IMapper mapper;
+        private readonly ICommandDataClient commandDataClient;
 
-        public PlatformsController(IPlatformRepo platformRepo, IMapper mapper)
+        public PlatformsController(
+            IPlatformRepo platformRepo,
+            IMapper mapper,
+            ICommandDataClient commandDataClient)
         {
             this.platformRepo = platformRepo;
             this.mapper = mapper;
+            this.commandDataClient = commandDataClient;
         }
 
         [HttpGet]
