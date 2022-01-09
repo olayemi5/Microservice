@@ -6,17 +6,19 @@ namespace CommandService.Controller
     [ApiController]
     public class PlatformsController : ControllerBase
     {
-        public PlatformsController()
-        {
+        private readonly IConfiguration configuration;
 
+        public PlatformsController(IConfiguration configuration)
+        {
+            this.configuration = configuration;
         }
 
         [HttpPost]
         public ActionResult TestInBoundConnection()
         {
-            Console.WriteLine("--> Inbound POST command Service");
+            Console.WriteLine("--> Inbound POST command Service" + configuration["PlatformService"]);
 
-            return Ok("Inbound test ok from platform service");
+            return Ok("Inbound test ok from platform service" + configuration["PlatformService"]);
         }
     }
 }
