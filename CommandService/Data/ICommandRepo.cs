@@ -14,7 +14,7 @@ namespace CommandService.Data
 
         //Commands
         IEnumerable<Command> GetCommandForPlatform(int platformId);
-        Command GetCommand(int commandId);
-        void CreateCommand(int platformId, Command command)
+        Command GetCommand(int platformId, int commandId);
+        void CreateCommand(int platformId, Command command);
     }
 }
