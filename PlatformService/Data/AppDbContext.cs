@@ -11,11 +11,5 @@ namespace PlatformService.Data
         }
 
         public DbSet<Platform> Platforms { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseInMemoryDatabase(
-                "InMem");
-        }
     }
 }
