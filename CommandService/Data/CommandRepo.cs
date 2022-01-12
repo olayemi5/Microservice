@@ -12,7 +12,12 @@ namespace CommandService.Data
         }
         public void CreateCommand(int platformId, Command command)
         {
-            throw new NotImplementedException();
+            if(command == null)
+            {
+                throw new ArgumentNullException(nameof(command));
+            }
+            command.PlatformId = platformId;
+            context.Commands.Add(command);
         }
 
         public void CreatePlatform(Platform plat)
