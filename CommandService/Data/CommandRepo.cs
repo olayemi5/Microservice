@@ -12,7 +12,7 @@ namespace CommandService.Data
         }
         public void CreateCommand(int platformId, Command command)
         {
-            if(command == null)
+            if (command == null)
             {
                 throw new ArgumentNullException(nameof(command));
             }
@@ -30,6 +30,11 @@ namespace CommandService.Data
             {
                 throw new ArgumentNullException(nameof(plat));
             }
+        }
+
+        public bool ExternalPlatformExists(int externalPlatformId)
+        {
+            return (context.Platforms.Any(p => p.ExternalId == externalPlatformId));
         }
 
         public Command GetCommand(int platformId, int commandId)
