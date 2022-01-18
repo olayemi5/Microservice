@@ -11,6 +11,7 @@ namespace PlatformService.Profiles
             //Source to Traget
             CreateMap<Platform, PlatformReadDto>();
             CreateMap<PlatformCreateDto, Platform>();
+            CreateMap<PlatformReadDto, PlatformPublishDto>();
         }
     }
 }
